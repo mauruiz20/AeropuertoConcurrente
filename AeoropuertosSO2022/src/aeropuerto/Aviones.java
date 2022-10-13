@@ -11,6 +11,7 @@ public class Aviones extends Thread {
     private Torres torre;
     private int pista;
     private int avion;
+    private int estado;
     private String color;
     public static String[] colores = {"\u001B[31m", "\u001B[32m", "\u001B[33m", "\u001B[34m", "\u001B[35m", "\u001B[36m", 
                                         "\u001B[37m", "\u001B[93m","\u001B[0m"};
@@ -20,6 +21,7 @@ public class Aviones extends Thread {
         this.pista = -1; // No tiene una pista inicial
         this.avion = avion;
         this.color = colores[avion % 9];
+        this.estado = (int) (Math.random() * 2); // estado = 0: quiere aterrizar - estado = 1: quiere despegar
     }
 
     public void run() {
@@ -28,12 +30,12 @@ public class Aviones extends Thread {
             
             this.pista = this.torre.elegirPista(); // El avión quiere elegir una pista
             
-            int random = (int) (Math.random() * 2);
-            
-            if (random == 1) {      // Se elige si el avión quiere despegar o aterrizar de manera aleatoria
-                this.aterrizar();         
+            if (this.estado == 0) {
+                this.aterrizar();
+                this.estado = 1;
             } else {      
-                this.despegar();        
+                this.despegar();
+                this.estado = 0;
             }          
             
             this.torre.liberarPista(pista); // Se libera la pista que se ocupó
@@ -42,6 +44,7 @@ public class Aviones extends Thread {
                 sleep((long) (Math.random() * 5000)); // Demora entre 0 y 5 segundos
             } catch (InterruptedException ex) {
             }
+            /*
 
             this.pista = this.torre.elegirPista(); // El avión quiere elegir una pista
             
@@ -57,7 +60,7 @@ public class Aviones extends Thread {
                 sleep((long) (Math.random() * 7000)); // Demora entre 0 y 7 segundos
             } catch (InterruptedException ex) {
             }
-            
+            */
         }
     }
 
