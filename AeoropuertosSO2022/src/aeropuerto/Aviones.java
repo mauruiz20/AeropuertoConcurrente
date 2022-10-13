@@ -44,23 +44,6 @@ public class Aviones extends Thread {
                 sleep((long) (Math.random() * 5000)); // Demora entre 0 y 5 segundos
             } catch (InterruptedException ex) {
             }
-            /*
-
-            this.pista = this.torre.elegirPista(); // El avión quiere elegir una pista
-            
-            if (random == 1) {
-                this.despegar();
-            } else {
-                this.aterrizar();
-            }
-                    
-            this.torre.liberarPista(pista);
-            
-            try {
-                sleep((long) (Math.random() * 7000)); // Demora entre 0 y 7 segundos
-            } catch (InterruptedException ex) {
-            }
-            */
         }
     }
 

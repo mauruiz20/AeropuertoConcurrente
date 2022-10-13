@@ -51,6 +51,6 @@ public class Torres {
         
         pistas[pista] = true;
         
-        notify(); // Le aviso a todos lo que estaban esperando a que despierten.
+        notify(); // Avisa al primero de la cola wait a que despierte.
     }
 }
